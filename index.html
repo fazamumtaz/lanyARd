@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Main Page</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <style>
+    .dot-pattern {
+      background-color: #CBF9F2;
+      background-image: radial-gradient(rgba(0, 0, 0, 0.15) 1.5px, transparent 1.5px);
+      background-size: 20px 20px;
+    }
+  </style>
+</head>
+
+<body class="dot-pattern flex items-center justify-center h-screen">
+
+  <div class="flex flex-col items-center gap-6">
+
+    <!-- Title -->
+    <h1 class="text-3xl font-black border-4 border-black px-6 py-3 bg-white shadow-[6px_6px_0px_black]">
+      lanyARd
+    </h1>
+
+    <!-- Buttons -->
+    <div class="flex flex-col gap-4 w-full">
+
+      <!-- Go to Input Page -->
+      <a href="/input-id.html" class="px-6 py-4 border-4 border-black text-lg font-bold 
+               bg-yellow-300 shadow-[6px_6px_0px_black] 
+               hover:translate-x-[2px] hover:translate-y-[2px] 
+               hover:shadow-[4px_4px_0px_black] 
+               transition-all duration-100 text-center">
+        Input ID
+      </a>
+
+      <!-- Go to Camera Page -->
+      <a href="/camera.html" class="px-6 py-4 border-4 border-black text-lg font-bold 
+               bg-blue-300 shadow-[6px_6px_0px_black] 
+               hover:translate-x-[2px] hover:translate-y-[2px] 
+               hover:shadow-[4px_4px_0px_black] 
+               transition-all duration-100 text-center">
+        Open Camera
+      </a>
+
+    </div>
+
+  </div>
+
+</body>
+
+</html>
