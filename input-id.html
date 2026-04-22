@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-[#CBF9F2] flex items-center justify-center h-screen">
+
+  <div class="flex flex-col gap-4">
+
+    <!-- Input -->
+    <input id="textInput" type="text" placeholder="Masukkan teks..." class="px-4 py-3 border-4 border-black text-lg font-bold 
+             shadow-[6px_6px_0px_black] focus:outline-none
+             bg-white">
+
+    <!-- Button (Link) -->
+    <a id="linkButton" href="/camera/" class="px-4 py-3 border-4 border-black text-lg font-bold 
+             bg-yellow-300 shadow-[6px_6px_0px_black] 
+             hover:translate-x-[2px] hover:translate-y-[2px] 
+             hover:shadow-[4px_4px_0px_black] 
+             transition-all duration-100 text-center">
+      Go to Camera
+    </a>
+
+  </div>
+
+  <script>
+    const input = document.getElementById("textInput");
+    const link = document.getElementById("linkButton");
+
+    input.addEventListener("input", () => {
+      const value = input.value.trim();
+      link.href = value ? `/camera/${encodeURIComponent(value)}` : "/camera/";
+    });
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AR Camera</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="m-0 p-0 overflow-hidden bg-black">
+
+  <!-- Camera Video -->
+  <video id="camera" autoplay playsinline class="fixed top-0 left-0 w-screen h-screen object-cover"></video>
+
+  <!-- Optional Overlay (buat nanti AR / UI) -->
+  <div class="fixed top-0 left-0 w-full h-full pointer-events-none">
+    <!-- nanti bisa isi canvas / UI -->
+  </div>
+
+  <script>
+    const video = document.getElementById("camera");
+
+    async function startCamera() {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: {
+            facingMode: { ideal: "environment" }
+          },
+          audio: false
+        });
+
+        video.srcObject = stream;
+
+      } catch (error) {
+        console.error(error);
+        alert("Gagal akses kamera 😵");
+      }
+    }
+
+    startCamera();
+  </script>
+
+</body>
+
+</html>
