@@ -17,7 +17,7 @@
 
     .hero {
       margin: 0;
-      height: 100vh;
+      min-height: 100vh;
       background-color: #F5F4EF;
       background-image:
         linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
@@ -124,6 +124,77 @@
       transform: translate(-2px, -2px);
       box-shadow: 5px 5px 0px black;
     }
+
+    /* ── Responsive hero ── */
+
+    /* Navbar height offset — the navbar is ~64px tall with top-4 (16px) offset */
+    :root {
+      --navbar-offset: 80px;
+    }
+
+    #hero {
+      padding-top: var(--navbar-offset);
+      box-sizing: border-box;
+    }
+
+    /* Scale card images down on shorter/wider screens */
+    .hero-cards img {
+      transition: width 0.2s;
+    }
+
+    /* Tighten vertical gap on shorter viewports */
+    @media (max-height: 780px) {
+      #hero {
+        gap: 1.5rem;
+      }
+
+      .hero-cards img:nth-child(1),
+      .hero-cards img:nth-child(3) {
+        width: 150px;
+      }
+
+      .hero-cards img:nth-child(2) {
+        width: 320px;
+      }
+
+      #hero h1 {
+        font-size: 2.25rem;
+      }
+
+      #hero p {
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-height: 650px) {
+      #hero {
+        gap: 1rem;
+      }
+
+      .hero-cards img:nth-child(1),
+      .hero-cards img:nth-child(3) {
+        width: 110px;
+      }
+
+      .hero-cards img:nth-child(2) {
+        width: 240px;
+      }
+
+      #hero h1 {
+        font-size: 1.75rem;
+      }
+
+      #hero p {
+        font-size: 0.8rem;
+      }
+    }
+
+    /* Widescreen / short-and-wide laptops (e.g. 1920×1080 but browser chrome eats height) */
+    @media (max-height: 900px) and (min-width: 1280px) {
+      .hero-bubble {
+        display: none;
+      }
+    }
   </style>
 </head>
 
@@ -161,8 +232,8 @@
     </header>
 
     <!-- HERO SECTION -->
-    <section id="hero"
-      class="w-full h-screen hero flex flex-col items-center justify-center gap-15 relative overflow-hidden">
+    <section id="hero" class="w-full hero flex flex-col items-center justify-center relative overflow-hidden"
+      style="gap: clamp(1rem, 3vh, 3.75rem);">
 
       <!-- Doodle: Squiggle top-right -->
       <div class="absolute top-[15%] right-[8%] ">
@@ -193,25 +264,32 @@
       </div>
 
       <!-- Main content -->
-      <div class="relative z-10">
-        <h1 class="font-bold text-center w-[70%] mx-auto text-5xl sans text-[#333]">Setiap benda punya cerita. Sekarang,
-          biarkan
-          mereka
+      <div class="relative z-10 px-4">
+        <h1 class="font-bold text-center w-[70%] mx-auto sans text-[#333]"
+          style="font-size: clamp(1.5rem, 3.5vw, 3rem);">
+          Setiap benda punya cerita. Sekarang,
+          biarkan mereka
           <span class="px-2 bg-[#00D6BD]/70">menceritakannya.</span>
         </h1>
-        <p class="mx-auto my-3 text-center text-lg font-semibold w-[50%] mono text-[#333]">Scan, tonton, dan
+        <p class="mx-auto my-3 text-center font-semibold w-[50%] mono text-[#333]"
+          style="font-size: clamp(0.8rem, 1.2vw, 1.125rem);">
+          Scan, tonton, dan
           berinteraksi.
-          Hubungkan aksesori fisikmu dengan cerita digital yang interaktif dalam satu langkah mudah.</p>
+          Hubungkan aksesori fisikmu dengan cerita digital yang interaktif dalam satu langkah mudah.
+        </p>
       </div>
 
       <div class="w-full justify-center flex relative z-10">
-        <div class="flex flex-row gap-1 justify-center items-center">
-          <img src="./img/jasmine1.png" alt="" class="w-[200px] h-auto rotate-10">
-          <img src="./img/wedding1.png" alt="" class="w-[450px] h-auto -rotate-5">
-          <img src="./img/devin1.png" alt="" class="w-[200px] h-auto -rotate-2 -ml-2">
+        <div class="hero-cards flex flex-row gap-1 justify-center items-center">
+          <img src="./img/jasmine1.png" alt="" class="rotate-10"
+            style="width: clamp(120px, 13vw, 200px); height: auto;">
+          <img src="./img/wedding1.png" alt="" class="-rotate-5"
+            style="width: clamp(260px, 30vw, 450px); height: auto;">
+          <img src="./img/devin1.png" alt="" class="-rotate-2 -ml-2"
+            style="width: clamp(120px, 13vw, 200px); height: auto;">
         </div>
         <div
-          class="bg-[#fdd64e] absolute top-0 -rotate-5 left-[500px] w-[250px] p-3 rounded-tl-xl rounded-tr-xl rounded-bl-xl border-3 shadow-[6px_6px_0px_black] mono font-semibold text-sm">
+          class="hero-bubble bg-[#fdd64e] absolute top-0 -rotate-5 left-[500px] w-[250px] p-3 rounded-tl-xl rounded-tr-xl rounded-bl-xl border-3 shadow-[6px_6px_0px_black] mono font-semibold text-sm">
           <p>Kenang memori kamu dengan cara yang interaktif</p>
         </div>
       </div>
