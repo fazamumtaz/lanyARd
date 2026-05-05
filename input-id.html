@@ -1,48 +1,65 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
-  <style>
-    .dot-pattern {
-      background-color: #CBF9F2;
-      background-image: radial-gradient(rgba(0, 0, 0, 0.1) 1.5px, transparent 1.5px);
-      background-size: 20px 20px;
-    }
-  </style>
+  <link rel="stylesheet" href="global.css">
+  <title>Input ID</title>
 </head>
 
-<body class="dot-pattern flex items-center justify-center h-screen">
+<body class="bg-[#F5F4EF] grid-pattern min-h-screen flex items-center justify-center">
 
-  <div class="flex flex-col gap-4">
+  <div class="w-[90%] max-w-md bg-white border-[3px] border-black 
+    shadow-[8px_8px_0px_black] p-6 rounded-xl relative">
+
+    <!-- Title -->
+    <h1 class="text-2xl font-bold mb-2">Masukkan ID</h1>
+    <p class="mono text-sm mb-5">Gunakan ID dari produk kamu</p>
 
     <!-- Input -->
-    <input id="textInput" type="text" placeholder="Masukkan teks..." class="px-4 py-3 border-4 border-black text-lg font-bold 
-             shadow-[6px_6px_0px_black] focus:outline-none
-             bg-white">
+    <input id="arId" type="text" placeholder="Contoh: POP-12345"
+      class="w-full border-[3px] border-black p-3 mb-4 mono outline-none">
 
     <!-- Button -->
-    <a id="linkButton" href="/camera/" class="px-4 py-3 border-4 border-black text-lg font-bold
-             bg-yellow-300 shadow-[6px_6px_0px_black] 
-             hover:translate-x-[2px] hover:translate-y-[2px] 
-             hover:shadow-[4px_4px_0px_black] 
-             transition-all duration-100 text-center">
-      Go to Camera
-    </a>
+    <button onclick="goToCamera()" class="w-full bg-[#00D6BD] border-[3px] border-black py-3 font-bold 
+      shadow-[6px_6px_0px_black] hover:translate-x-[3px] hover:translate-y-[3px] 
+      hover:shadow-[3px_3px_0px_black] transition-all">
+      Mulai Scan
+    </button>
+
+    <!-- Toggle How -->
+    <div class="mt-5">
+      <button onclick="toggleHow()" class="mono font-bold underline">
+        Cara pakai ↓
+      </button>
+
+      <div id="howBox" class="hidden mt-3 text-sm mono">
+        <ol class="list-decimal ml-5 space-y-1">
+          <li>Masukkan ID dari produk</li>
+          <li>Klik tombol scan</li>
+          <li>Kamera akan terbuka</li>
+          <li>Arahkan ke target</li>
+        </ol>
+      </div>
+    </div>
 
   </div>
 
   <script>
-    const input = document.getElementById("textInput");
-    const link = document.getElementById("linkButton");
+    function goToCamera() {
+      const id = document.getElementById("arId").value;
+      if (!id) {
+        alert("Isi ID dulu ya");
+        return;
+      }
+      window.location.href = "camera.html?id=" + id;
+    }
 
-    input.addEventListener("input", () => {
-      const value = input.value.trim();
-      link.href = value ? `/camera/${encodeURIComponent(value)}` : "/camera/";
-    });
+    function toggleHow() {
+      document.getElementById("howBox").classList.toggle("hidden");
+    }
   </script>
 
 </body>
