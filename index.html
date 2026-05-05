@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <title>POP | Make Things Alive</title>
+  <link rel="stylesheet" href="global.css">
 
   <style>
     body {
@@ -224,13 +225,13 @@
           </a>
 
           <!-- Desktop links -->
-          <ul class="hidden md:flex gap-5 lg:gap-8 font-semibold" style="font-family: monospace;">
-            <li><a href="#hero" class="hover:underline underline-offset-4">Home</a></li>
-            <li><a href="#what" class="hover:underline underline-offset-4">What</a></li>
-            <li><a href="#how" class="hover:underline underline-offset-4">How</a></li>
-            <li><a href="#demo" class="hover:underline underline-offset-4">Demo</a></li>
-            <li><a href="#buy" class="hover:underline underline-offset-4">Buy</a></li>
-            <li><a href="#faq" class="hover:underline underline-offset-4">FAQ</a></li>
+          <ul class="hidden md:flex gap-5 lg:gap-8 font-semibold">
+            <li><a href="#hero" class="hover:underline underline-offset-4 mono">Home</a></li>
+            <li><a href="#what" class="hover:underline underline-offset-4 mono">What</a></li>
+            <li><a href="#how" class="hover:underline underline-offset-4 mono">How</a></li>
+            <li><a href="#demo" class="hover:underline underline-offset-4 mono">Demo</a></li>
+            <li><a href="#buy" class="hover:underline underline-offset-4 mono">Buy</a></li>
+            <li><a href="#faq" class="hover:underline underline-offset-4 mono">FAQ</a></li>
           </ul>
 
           <!-- Desktop CTA + Mobile hamburger -->
@@ -239,7 +240,7 @@
               shadow-[5px_5px_0px_black]
               hover:translate-x-[3px] hover:translate-y-[3px]
               hover:shadow-[2px_2px_0px_black]
-              transition-all duration-100 cursor-pointer select-none" style="font-family: monospace;">
+              transition-all duration-100 cursor-pointer select-none">
               Shop
             </a>
 
@@ -255,17 +256,19 @@
 
         <!-- Mobile drawer -->
         <div id="mobile-menu">
-          <ul class="flex flex-col gap-1 pt-3 pb-1 border-t-2 border-black/10 mt-3"
-            style="font-family: monospace; font-weight: 600;">
-            <li><a href="#hero" onclick="toggleMenu()" class="block py-2 hover:bg-black/5 px-2 rounded">Home</a></li>
-            <li><a href="#what" onclick="toggleMenu()" class="block py-2 hover:bg-black/5 px-2 rounded">What</a></li>
-            <li><a href="#how" onclick="toggleMenu()" class="block py-2 hover:bg-black/5 px-2 rounded">How</a></li>
-            <li><a href="#demo" onclick="toggleMenu()" class="block py-2 hover:bg-black/5 px-2 rounded">Demo</a></li>
-            <li><a href="#buy" onclick="toggleMenu()" class="block py-2 hover:bg-black/5 px-2 rounded">Buy</a></li>
-            <li><a href="#faq" onclick="toggleMenu()" class="block py-2 hover:bg-black/5 px-2 rounded">FAQ</a></li>
+          <ul class="flex flex-col gap-1 pt-3 pb-1 border-t-2 border-black/10 mt-3">
+            <li><a href="#hero" onclick="toggleMenu()" class="block py-2 hover:bg-black/5 px-2 rounded mono">Home</a>
+            </li>
+            <li><a href="#what" onclick="toggleMenu()" class="block py-2 hover:bg-black/5 px-2 rounded mono">What</a>
+            </li>
+            <li><a href="#how" onclick="toggleMenu()" class="block py-2 hover:bg-black/5 px-2 rounded mono">How</a></li>
+            <li><a href="#demo" onclick="toggleMenu()" class="block py-2 hover:bg-black/5 px-2 rounded mono">Demo</a>
+            </li>
+            <li><a href="#buy" onclick="toggleMenu()" class="block py-2 hover:bg-black/5 px-2 rounded mono">Buy</a></li>
+            <li><a href="#faq" onclick="toggleMenu()" class="block py-2 hover:bg-black/5 px-2 rounded mono">FAQ</a></li>
             <li class="pt-2">
               <a href="catalog.html" class="bg-[#00D6BD] px-5 py-2 font-bold border-[3px] border-black
-                shadow-[4px_4px_0px_black] inline-block cursor-pointer">Shop</a>
+                shadow-[4px_4px_0px_black] inline-block cursor-pointer mono">Shop</a>
             </li>
           </ul>
         </div>
@@ -303,15 +306,15 @@
       </div>
 
       <!-- Main text -->
-      <div class="relative z-10 px-4 sm:px-6">
-        <h1 class="font-bold text-center mx-auto text-[#333] w-full sm:w-[80%] lg:w-[70%]"
-          style="font-size: clamp(1.4rem, 4vw, 3rem); font-family: sans-serif;">
+      <div class="relative z-10 px-3 sm:px-6">
+        <h1
+          class="font-bold text-center mx-auto text-[#333] w-full sm:w-[80%] lg:w-[70%] sans md:text-5xl md:leading-13 text-3xl">
           Setiap benda punya cerita. Sekarang,
           biarkan mereka
-          <span class="px-2 bg-[#00D6BD]/70">menceritakannya.</span>
+          <span class=" px-2 bg-[#00D6BD]/70">menceritakannya.</span>
         </h1>
-        <p class="mx-auto my-3 text-center font-semibold w-full sm:w-[70%] lg:w-[50%] text-[#333]"
-          style="font-size: clamp(0.8rem, 1.5vw, 1.125rem); font-family: monospace;">
+        <p
+          class="mx-auto my-3 text-center font-semibold w-full sm:w-[70%] lg:w-[50%] text-[#333] md:text-lg text-sm mono">
           Scan, tonton, dan berinteraksi.
           Hubungkan aksesori fisikmu dengan cerita digital yang interaktif dalam satu langkah mudah.
         </p>
@@ -319,13 +322,15 @@
 
       <!-- Cards -->
       <div class="w-full justify-center flex relative z-10 px-4">
-        <div class="hero-cards flex flex-row gap-1 justify-center items-center">
-          <img src="./img/jasmine1.png" alt="" class="rotate-10 hidden sm:block"
-            style="width: clamp(100px, 11vw, 200px); height: auto;">
-          <img src="./img/wedding1.png" alt="" class="-rotate-5"
-            style="width: clamp(220px, 28vw, 450px); height: auto;">
-          <img src="./img/devin1.png" alt="" class="-rotate-2 hidden sm:block"
-            style="width: clamp(100px, 11vw, 200px); height: auto;">
+        <div class="hero-cards flex flex-row justify-center items-center">
+          <img src="./img/keychain-01.png" alt="" class="-rotate-10 block w-20 sm:w-65 h-auto max-w-none"
+            style="filter: drop-shadow(4px 6px 8px rgba(0,0,0,0.35));">
+          <img src="./img/jasmine1.png" alt="" class="-rotate-10 block w-20 sm:w-45 h-auto max-w-none"
+            style="filter: drop-shadow(4px 6px 8px rgba(0,0,0,0.35));">
+          <img src="./img/devin1.png" alt="" class="rotate-10 block w-20 sm:w-45 h-auto max-w-none"
+            style="filter: drop-shadow(4px 6px 8px rgba(0,0,0,0.35));">
+          <img src="./img/pin.png" alt="" class="rotate-10 block w-20 sm:w-60 h-auto max-w-none"
+            style="filter: drop-shadow(4px 6px 8px rgba(0,0,0,0.35));">
         </div>
         <div class="hero-bubble bg-[#fdd64e] absolute top-0 -rotate-5
           hidden lg:block

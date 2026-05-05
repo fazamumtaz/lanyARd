@@ -50,3 +50,18 @@ section {
   /* Opsional: Bikin ujungnya agak melengkung */
   border-radius: 2px;
 }
+
+@media (max-height: 780px) {
+  .hero-cards img:nth-child(1) {
+    width: 130px;
+  }
+  .hero-cards img:nth-child(2) {
+    width: 100px;
+  }
+  .hero-cards img:nth-child(3) {
+    width: 100px;
+  }
+  .hero-cards img:nth-child(4) {
+    width: 130px;
+  }
+}
