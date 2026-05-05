@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <title>POP – Pilih Produk</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .page-bg {
+      background-color: #F5F4EF;
+      background-image:
+        linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+      background-size: 40px 40px;
+      min-height: 100vh;
+    }
+
+    /* Product card hover — brutalist lift */
+    .product-card {
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      cursor: pointer;
+    }
+
+    .product-card:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 7px 7px 0px black;
+    }
+
+    .product-card:active {
+      transform: translate(1px, 1px);
+      box-shadow: 3px 3px 0px black;
+    }
+
+    /* Category label badge */
+    .cat-badge {
+      font-family: monospace;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border: 2px solid black;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+
+    /* Back button */
+    .back-btn {
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    .back-btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 5px 5px 0px black;
+    }
+
+    .back-btn:active {
+      transform: translate(1px, 1px);
+      box-shadow: 2px 2px 0px black;
+    }
+
+    /* Page-in animation */
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .anim-in {
+      animation: slideUp 0.35s ease both;
+    }
+
+    .anim-in:nth-child(1) {
+      animation-delay: 0.00s;
+    }
+
+    .anim-in:nth-child(2) {
+      animation-delay: 0.07s;
+    }
+
+    .anim-in:nth-child(3) {
+      animation-delay: 0.14s;
+    }
+
+    .anim-in:nth-child(4) {
+      animation-delay: 0.21s;
+    }
+
+    .anim-in:nth-child(5) {
+      animation-delay: 0.28s;
+    }
+
+    .anim-in:nth-child(6) {
+      animation-delay: 0.35s;
+    }
+
+    /* Doodle hide on tiny screens */
+    @media (max-width: 480px) {
+      .doodle {
+        display: none;
+      }
+    }
+
+    /* Image placeholder shimmer */
+    .img-placeholder {
+      background: linear-gradient(110deg, #e0e0e0 30%, #f0f0f0 50%, #e0e0e0 70%);
+      background-size: 200% 100%;
+      animation: shimmer 1.6s infinite;
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: 200% 0;
+      }
+
+      100% {
+        background-position: -200% 0;
+      }
+    }
+
+    /* Scrollbar style */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #F5F4EF;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: black;
+      border-radius: 0;
+    }
+  </style>
+</head>
+
+<body class="page-bg">
+
+  <!-- ══════ HEADER ══════ -->
+  <header class="w-full sticky top-0 z-50 px-4 sm:px-6 pt-4 pb-2 bg-[#F5F4EF]/90 backdrop-blur-sm">
+    <div class="max-w-5xl mx-auto flex items-center justify-between">
+
+      <!-- Back button -->
+      <a href="index.html" class="back-btn flex items-center gap-2 bg-white border-[3px] border-black px-3 sm:px-4 py-2
+          shadow-[4px_4px_0px_black] font-bold text-sm select-none" style="font-family: monospace;">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M10 3L5 8L10 13" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span class="hidden sm:inline">Kembali</span>
+      </a>
+
+      <!-- Logo -->
+      <div class="absolute left-1/2 -translate-x-1/2">
+        <img src="./img/logo.png" alt="POP" class="h-7 sm:h-8">
+      </div>
+
+      <!-- Spacer (mirror of back button for centering) -->
+      <div class="w-[80px] sm:w-[100px]"></div>
+    </div>
+  </header>
+
+  <!-- ══════ MAIN ══════ -->
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-10 pb-20 relative">
+
+    <!-- Doodle top-right -->
+    <div class="doodle absolute top-6 right-4 sm:right-0 opacity-70">
+      <svg width="55" height="55" viewBox="0 0 55 55" fill="none">
+        <path d="M27.5 27.5C27.5 22 31 18 36 19C41 20 44 25 42 31C40 37 34 40 28 38C22 36 18 30 20 23C22 16 29 13 36 15"
+          stroke="black" stroke-width="2" stroke-linecap="round" />
+      </svg>
+    </div>
+
+    <!-- Doodle bottom-left -->
+    <div class="doodle absolute bottom-32 left-0 opacity-60">
+      <svg width="80" height="24" viewBox="0 0 100 30" fill="none">
+        <path d="M4 15L14 4L24 15L34 4L44 15L54 4L64 15L74 4L84 15L94 4" stroke="black" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </div>
+
+    <!-- Page heading -->
+    <div class="mb-8 sm:mb-10 relative">
+      <!-- <p class="font-bold text-xs tracking-widest uppercase mb-1" style="font-family: monospace; color: #888;">
+        Langkah 1 dari 2
+      </p> -->
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#333]" style="font-family: sans-serif;">
+        Pilih Produk
+      </h1>
+      <!-- hand-drawn underline -->
+      <svg class="mt-2" width="200" height="10" viewBox="0 0 260 10" fill="none">
+        <path d="M2 7C20 4 60 2 100 3C140 4 180 2 220 4C240 5 252 7 258 7" stroke="black" stroke-width="2.5"
+          stroke-linecap="round" />
+      </svg>
+      <p class="mt-3 text-sm sm:text-base font-semibold text-[#555]" style="font-family: monospace;">
+        Pilih kategori dan produk yang kamu miliki untuk mulai pengalaman AR.
+      </p>
+    </div>
+
+    <!-- ── CATEGORY: Keychain ── -->
+    <div class="mb-10 sm:mb-12 anim-in">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="cat-badge bg-[#edfe8b]">Keychain</span>
+        <div class="flex-1 h-[2px] bg-black/10"></div>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+
+        <!-- Product card -->
+        <div
+          class="product-card bg-white border-[3px] border-black shadow-[4px_4px_0px_black] rounded-xl overflow-hidden"
+          onclick="goToCamera('KCH-WEDDING-01')">
+          <div class="img-placeholder w-full aspect-square"></div>
+          <div class="p-3">
+            <p class="font-bold text-sm" style="font-family: monospace;">Wedding Keychain</p>
+            <p class="text-xs text-[#888] mt-0.5" style="font-family: monospace;">KCH-WD-01</p>
+            <div class="mt-2 flex items-center justify-between">
+              <span class="text-xs bg-[#00D6BD]/20 border border-[#00D6BD] px-2 py-0.5 rounded font-semibold"
+                style="font-family: monospace;">AR Ready</span>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M6 3L11 8L6 13" stroke="black" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="product-card bg-white border-[3px] border-black shadow-[4px_4px_0px_black] rounded-xl overflow-hidden"
+          onclick="goToCamera('KCH-BIRTHDAY-01')">
+          <div class="img-placeholder w-full aspect-square"></div>
+          <div class="p-3">
+            <p class="font-bold text-sm" style="font-family: monospace;">Birthday Keychain</p>
+            <p class="text-xs text-[#888] mt-0.5" style="font-family: monospace;">KCH-BD-01</p>
+            <div class="mt-2 flex items-center justify-between">
+              <span class="text-xs bg-[#00D6BD]/20 border border-[#00D6BD] px-2 py-0.5 rounded font-semibold"
+                style="font-family: monospace;">AR Ready</span>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M6 3L11 8L6 13" stroke="black" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="product-card bg-white border-[3px] border-black shadow-[4px_4px_0px_black] rounded-xl overflow-hidden"
+          onclick="goToCamera('KCH-GRADUATION-01')">
+          <div class="img-placeholder w-full aspect-square"></div>
+          <div class="p-3">
+            <p class="font-bold text-sm" style="font-family: monospace;">Graduation Keychain</p>
+            <p class="text-xs text-[#888] mt-0.5" style="font-family: monospace;">KCH-GR-01</p>
+            <div class="mt-2 flex items-center justify-between">
+              <span class="text-xs bg-[#00D6BD]/20 border border-[#00D6BD] px-2 py-0.5 rounded font-semibold"
+                style="font-family: monospace;">AR Ready</span>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M6 3L11 8L6 13" stroke="black" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- "More" pill — shows on lg+ when there are more items -->
+        <div class="product-card hidden lg:flex bg-[#F5F4EF] border-[3px] border-black border-dashed shadow-[4px_4px_0px_black] rounded-xl
+          flex-col items-center justify-center aspect-square text-center p-4 gap-2" onclick="alert('Segera hadir!')">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <path d="M14 4V24M4 14H24" stroke="black" stroke-width="2.5" stroke-linecap="round" />
+          </svg>
+          <p class="text-xs font-bold" style="font-family: monospace;">Lihat semua</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── CATEGORY: Pin ── -->
+    <div class="mb-10 sm:mb-12 anim-in">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="cat-badge bg-[#00D6BD]">Pin</span>
+        <div class="flex-1 h-[2px] bg-black/10"></div>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+
+        <div
+          class="product-card bg-white border-[3px] border-black shadow-[4px_4px_0px_black] rounded-xl overflow-hidden"
+          onclick="goToCamera('PIN-WEDDING-01')">
+          <div class="img-placeholder w-full aspect-square"></div>
+          <div class="p-3">
+            <p class="font-bold text-sm" style="font-family: monospace;">Wedding Pin</p>
+            <p class="text-xs text-[#888] mt-0.5" style="font-family: monospace;">PIN-WD-01</p>
+            <div class="mt-2 flex items-center justify-between">
+              <span class="text-xs bg-[#00D6BD]/20 border border-[#00D6BD] px-2 py-0.5 rounded font-semibold"
+                style="font-family: monospace;">AR Ready</span>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M6 3L11 8L6 13" stroke="black" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="product-card bg-white border-[3px] border-black shadow-[4px_4px_0px_black] rounded-xl overflow-hidden"
+          onclick="goToCamera('PIN-EVENT-01')">
+          <div class="img-placeholder w-full aspect-square"></div>
+          <div class="p-3">
+            <p class="font-bold text-sm" style="font-family: monospace;">Event ID Pin</p>
+            <p class="text-xs text-[#888] mt-0.5" style="font-family: monospace;">PIN-EV-01</p>
+            <div class="mt-2 flex items-center justify-between">
+              <span class="text-xs bg-[#00D6BD]/20 border border-[#00D6BD] px-2 py-0.5 rounded font-semibold"
+                style="font-family: monospace;">AR Ready</span>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M6 3L11 8L6 13" stroke="black" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="product-card bg-white border-[3px] border-black shadow-[4px_4px_0px_black] rounded-xl overflow-hidden"
+          onclick="goToCamera('PIN-BIRTHDAY-01')">
+          <div class="img-placeholder w-full aspect-square"></div>
+          <div class="p-3">
+            <p class="font-bold text-sm" style="font-family: monospace;">Birthday Pin</p>
+            <p class="text-xs text-[#888] mt-0.5" style="font-family: monospace;">PIN-BD-01</p>
+            <div class="mt-2 flex items-center justify-between">
+              <span class="text-xs bg-[#edfe8b] border border-black px-2 py-0.5 rounded font-semibold"
+                style="font-family: monospace;">New!</span>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M6 3L11 8L6 13" stroke="black" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card hidden lg:flex bg-[#F5F4EF] border-[3px] border-black border-dashed shadow-[4px_4px_0px_black] rounded-xl
+          flex-col items-center justify-center aspect-square text-center p-4 gap-2" onclick="alert('Segera hadir!')">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <path d="M14 4V24M4 14H24" stroke="black" stroke-width="2.5" stroke-linecap="round" />
+          </svg>
+          <p class="text-xs font-bold" style="font-family: monospace;">Lihat semua</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── CATEGORY: Bucket / Tote ── -->
+    <div class="mb-10 sm:mb-12 anim-in">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="cat-badge bg-[#d3fba3]">Bucket Bag</span>
+        <div class="flex-1 h-[2px] bg-black/10"></div>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+
+        <div
+          class="product-card bg-white border-[3px] border-black shadow-[4px_4px_0px_black] rounded-xl overflow-hidden"
+          onclick="goToCamera('BCK-WEDDING-01')">
+          <div class="img-placeholder w-full aspect-square"></div>
+          <div class="p-3">
+            <p class="font-bold text-sm" style="font-family: monospace;">Wedding Bucket</p>
+            <p class="text-xs text-[#888] mt-0.5" style="font-family: monospace;">BCK-WD-01</p>
+            <div class="mt-2 flex items-center justify-between">
+              <span class="text-xs bg-[#00D6BD]/20 border border-[#00D6BD] px-2 py-0.5 rounded font-semibold"
+                style="font-family: monospace;">AR Ready</span>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M6 3L11 8L6 13" stroke="black" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="product-card bg-white border-[3px] border-black shadow-[4px_4px_0px_black] rounded-xl overflow-hidden"
+          onclick="goToCamera('BCK-CUSTOM-01')">
+          <div class="img-placeholder w-full aspect-square"></div>
+          <div class="p-3">
+            <p class="font-bold text-sm" style="font-family: monospace;">Custom Bucket</p>
+            <p class="text-xs text-[#888] mt-0.5" style="font-family: monospace;">BCK-CS-01</p>
+            <div class="mt-2 flex items-center justify-between">
+              <span class="text-xs bg-[#00D6BD]/20 border border-[#00D6BD] px-2 py-0.5 rounded font-semibold"
+                style="font-family: monospace;">AR Ready</span>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M6 3L11 8L6 13" stroke="black" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card hidden sm:flex bg-[#F5F4EF] border-[3px] border-black border-dashed shadow-[4px_4px_0px_black] rounded-xl
+          flex-col items-center justify-center aspect-square text-center p-4 gap-2" onclick="alert('Segera hadir!')">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <path d="M14 4V24M4 14H24" stroke="black" stroke-width="2.5" stroke-linecap="round" />
+          </svg>
+          <p class="text-xs font-bold" style="font-family: monospace;">Lihat semua</p>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ══════ BOTTOM STICKY CTA (mobile) ══════ -->
+  <div
+    class="fixed bottom-0 left-0 w-full bg-[#F5F4EF]/95 backdrop-blur border-t-[3px] border-black px-4 py-3 sm:hidden z-50 flex items-center justify-between gap-3">
+    <p class="text-xs font-semibold text-[#555]" style="font-family: monospace;">Tap produk untuk mulai AR</p>
+    <div class="flex items-center gap-1">
+      <span class="w-2 h-2 rounded-full bg-[#00D6BD] border border-black"></span>
+      <span class="text-xs font-bold" style="font-family: monospace;">Ready</span>
+    </div>
+  </div>
+
+  <script>
+    function goToCamera(id) {
+      if (!id || id.trim() === '') {
+        // shake the input
+        const inp = document.getElementById('manualId');
+        inp.style.outline = '3px solid red';
+        setTimeout(() => inp.style.outline = 'none', 800);
+        return;
+      }
+      // Navigate to camera page with the product ID
+      window.location.href = 'camera.html?id=' + encodeURIComponent(id.trim());
+    }
+  </script>
+
+</body>
+
+</html>
