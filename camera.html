@@ -2,90 +2,75 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  <link rel="stylesheet" href="global.css">
-  <title>Camera</title>
+  <title>POP | Pilih Produk</title>
+
+  <link rel="stylesheet" href="global.css" />
 </head>
 
 <body class="bg-black overflow-hidden">
-
   <!-- CAMERA -->
   <video id="camera" autoplay playsinline class="fixed top-0 left-0 w-full h-full object-cover"></video>
 
   <!-- OVERLAY -->
   <div class="absolute top-5 left-5 z-10">
-    <button onclick="goBack()" class="bg-white px-4 py-2 border-[3px] border-black 
-      shadow-[5px_5px_0px_black] mono font-bold">
-      ← Back
-    </button>
+      <button onclick="goBack()" class="bg-white px-4 py-2 border-[3px] border-black shadow-[5px_5px_0px_black] mono font-bold">← Back</button>
   </div>
 
   <!-- ID DISPLAY -->
-  <div class="absolute top-5 right-5 z-10 
-    bg-[#edfe8b] px-4 py-2 border-[3px] border-black 
-    shadow-[5px_5px_0px_black] mono font-bold">
-    ID: <span id="displayId"></span>
-  </div>
+  <div class="absolute top-5 right-5 z-10 bg-[#edfe8b] px-4 py-2 border-[3px] border-black shadow-[5px_5px_0px_black] mono font-bold">ID: <span id="displayId"></span></div>
 
   <!-- TARGET FRAME -->
   <div class="absolute inset-0 flex items-center justify-center">
-    <div class="w-[250px] h-[350px] border-[3px] border-white rounded-xl"></div>
+      <div class="w-[250px] h-[350px] border-[3px] border-white rounded-xl"></div>
   </div>
 
   <!-- TOGGLE HOW -->
   <div class="absolute bottom-5 left-1/2 -translate-x-1/2 z-10 text-center">
+      <button onclick="toggleHow()" class="bg-white px-5 py-2 border-[3px] border-black shadow-[5px_5px_0px_black] mono font-bold">Cara pakai</button>
 
-    <button onclick="toggleHow()" class="bg-white px-5 py-2 border-[3px] border-black 
-      shadow-[5px_5px_0px_black] mono font-bold">
-      Cara pakai
-    </button>
-
-    <div id="howBox" class="hidden mt-3 bg-white p-4 border-[3px] border-black 
-      shadow-[6px_6px_0px_black] text-sm mono max-w-xs">
-
-      <ol class="list-decimal ml-4 text-left space-y-1">
-        <li>Arahkan kamera ke target</li>
-        <li>Pastikan cahaya cukup</li>
-        <li>Tunggu objek muncul</li>
-      </ol>
-    </div>
-
+      <div id="howBox" class="hidden mt-3 bg-white p-4 border-[3px] border-black shadow-[6px_6px_0px_black] text-sm mono max-w-xs">
+        <ol class="list-decimal ml-4 text-left space-y-1">
+            <li>Arahkan kamera ke target</li>
+            <li>Pastikan cahaya cukup</li>
+            <li>Tunggu objek muncul</li>
+        </ol>
+      </div>
   </div>
 
   <script>
-    const video = document.getElementById("camera");
+      const video = document.getElementById("camera");
 
-    async function startCamera() {
-      try {
-        const stream = await navigator.mediaDevices.getUserMedia({
-          video: { facingMode: "environment" }
-        });
-        video.srcObject = stream;
-      } catch (err) {
-        alert("Tidak bisa akses kamera");
+      async function startCamera() {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({
+              video: { facingMode: "environment" },
+            });
+            video.srcObject = stream;
+        } catch (err) {
+            alert("Tidak bisa akses kamera");
+        }
       }
-    }
 
-    function getId() {
-      const params = new URLSearchParams(window.location.search);
-      return params.get("id");
-    }
+      function getId() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get("id");
+      }
 
-    function goBack() {
-      window.history.back();
-    }
+      function goBack() {
+        window.history.back();
+      }
 
-    function toggleHow() {
-      document.getElementById("howBox").classList.toggle("hidden");
-    }
+      function toggleHow() {
+        document.getElementById("howBox").classList.toggle("hidden");
+      }
 
-    document.getElementById("displayId").innerText = getId() || "-";
+      document.getElementById("displayId").innerText = getId() || "-";
 
-    startCamera();
+      startCamera();
   </script>
-
 </body>
 
 </html>
