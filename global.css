@@ -50,3 +50,47 @@ section {
   /* Opsional: Bikin ujungnya agak melengkung */
   border-radius: 2px;
 }
+
+.photo-row {
+  display: flex;
+  flex-wrap: wrap; /* Supaya foto turun ke bawah kalau layar sempit */
+  justify-content: center; /* Foto rata tengah */
+  gap: 15px; /* Jarak antar foto */
+  margin-top: 30px;
+  max-width: 1000px; /* Batas lebar maksimal row */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.photo-item {
+  flex: 1 1 calc(25% - 20px); /* Default: 4 foto per baris (desktop) */
+  min-width: 150px; /* Ukuran minimal supaya foto gak kekecilan */
+  max-width: 250px;
+}
+
+.photo-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px; /* Biar ujungnya smooth 😎 */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Efek bayangan dikit */
+  transition: transform 0.3s ease; /* Efek hover halus */
+}
+
+/* 😋 Efek interaksi pas kursor di atas foto */
+.photo-item img:hover {
+  transform: scale(1.05);
+}
+
+/* 📱 Responsivitas untuk Tablet & Mobile */
+@media (max-width: 768px) {
+  .photo-item {
+    flex: 1 1 calc(50% - 20px); /* Layar tablet: 2 foto per baris */
+  }
+}
+
+@media (max-width: 480px) {
+  .photo-item {
+    flex: 1 1 100%; /* Layar HP: 1 foto per baris (tumpuk vertikal) */
+    max-width: 300px;
+  }
+}
