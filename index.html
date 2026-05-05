@@ -244,6 +244,14 @@
               Shop
             </a>
 
+            <a href="catalog.html" class="hidden md:block bg-[#00D6BD] px-5 py-2 font-bold border-[3px] border-black
+              shadow-[5px_5px_0px_black]
+              hover:translate-x-[3px] hover:translate-y-[3px]
+              hover:shadow-[2px_2px_0px_black]
+              transition-all duration-100 cursor-pointer select-none">
+              Scan
+            </a>
+
             <!-- Hamburger button (mobile only) -->
             <button id="hamburger" class="md:hidden flex flex-col gap-[5px] p-1" aria-label="Menu"
               onclick="toggleMenu()">
@@ -496,10 +504,10 @@
         class="w-[88%] sm:w-[82%] lg:w-[80%] mx-auto bg-[#c7c7c7] rounded-xl aspect-video flex justify-center items-center relative">
 
 
-        <iframe class="h-full w-full rounded-xl" src="https://www.youtube.com/embed/gltBwWCrS38?si=hxV_mSndGj0HcEAb"
+        <!-- <iframe class="h-full w-full rounded-xl" src="https://www.youtube.com/embed/gltBwWCrS38?si=hxV_mSndGj0HcEAb"
           title="YouTube video player" frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> -->
 
       </div>
     </section>
@@ -565,7 +573,7 @@
       <div class="w-[88%] sm:w-[82%] lg:w-[80%] mx-auto flex flex-col lg:flex-row gap-10 lg:gap-8">
         <!-- Heading col -->
         <div class="lg:w-[30%] shrink-0">
-          <h1 class="text-3xl sm:text-4xl font-bold sans">FAQ</h1>
+          <h1 class="text-3xl sm:text-4xl font-bold">FAQ</h1>
           <svg class="mt-1" width="70" height="8" viewBox="0 0 80 8" fill="none">
             <path d="M2 5C15 3 40 2 60 3.5C68 4 75 5 78 5" stroke="black" stroke-width="2.5" stroke-linecap="round" />
           </svg>
@@ -578,7 +586,7 @@
               <h3 class="font-bold text-sm sm:text-base sans">Apa itu POP?</h3>
               <span id="faq-icon-0" class="text-lg font-bold leading-none">+</span>
             </div>
-            <p id="faq-0" class="text-sm sm:text-base mt-3 hidden">
+            <p id="faq-0" class="text-sm font-semibold mt-3 hidden mono">
               POP adalah platform yang menghubungkan benda fisik dengan pengalaman digital menggunakan teknologi AR.
             </p>
           </div>
@@ -589,7 +597,7 @@
               </h3>
               <span id="faq-icon-1" class="text-lg font-bold leading-none">+</span>
             </div>
-            <p id="faq-1" class="text-sm sm:text-base mt-3 hidden">
+            <p id="faq-1" class="text-sm mt-3 hidden mono font-semibold">
               Tidak perlu. Kamu cukup buka halaman scan dari browser dan langsung gunakan kamera HP kamu.
             </p>
           </div>
@@ -600,7 +608,7 @@
               </h3>
               <span id="faq-icon-2" class="text-lg font-bold leading-none">+</span>
             </div>
-            <p id="faq-2" class="text-sm sm:text-base mt-3 hidden">
+            <p id="faq-2" class="text-sm mt-3 hidden font-semibold mono">
               Bisa untuk ID card event, hadiah spesial, wedding memory, hingga branding produk.
             </p>
           </div>
@@ -610,7 +618,7 @@
               <h3 class="font-bold text-sm sm:text-base sans">Apakah semua HP support?</h3>
               <span id="faq-icon-3" class="text-lg font-bold leading-none">+</span>
             </div>
-            <p id="faq-3" class="text-sm sm:text-base mt-3 hidden">
+            <p id="faq-3" class="text-sm font-semibold mono mt-3 hidden">
               Selama HP kamu punya kamera dan browser modern, fitur AR bisa berjalan dengan baik.
             </p>
           </div>
@@ -632,10 +640,14 @@
         <div>
           <img src="./img/pop-white.png" alt="POP" class="h-7 sm:h-8">
         </div>
-        <span class="text-white text-sm font-light">Make Things Alive.</span>
+        <span class="text-white font-semibold sans">Make Things Alive.</span>
         <div class="flex flex-row gap-2">
-          <img src="./img/wa.svg" alt="WhatsApp" class="w-7 h-7 sm:w-8 sm:h-8">
-          <img src="./img/ig.svg" alt="Instagram" class="w-7 h-7 sm:w-8 sm:h-8">
+          <a href="https://www.instagram.com/hi.pop.ar">
+            <img src="./img/wa.svg" alt="WhatsApp" class="w-7 h-7 sm:w-8 sm:h-8">
+          </a>
+          <a href="wa.me/620192831">
+            <img src="./img/ig.svg" alt="Instagram" class="w-7 h-7 sm:w-8 sm:h-8">
+          </a>
         </div>
       </div>
     </section>
