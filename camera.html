@@ -12,16 +12,39 @@
   <link rel="stylesheet" href="global.css" />
 </head>
 
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const productId = urlParams.get('id');
+
+  async function initAR() {
+    const targetPath = `./ar/${productId}/targets.mind`;
+    const modelPath = `./ar/${productId}/model.glb`;
+
+    try {
+        const response = await fetch(targetPath, { method: 'HEAD' });
+        if (!response.ok) throw new Error("File tidak ada");
+
+        const sceneHTML = `
+            <a-scene mindar-image="imageTargetSrc: ${targetPath}; uiScanning: yes;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+              <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+              <a-entity id="target" mindar-image-target="targetIndex: 0">
+                <a-entity gltf-model="${modelPath}" rotation="0 0 0" position="0 0.2 0" scale="5 5 5" animation="property: rotation; to: 0 360 0; dur: 5000; easing: linear; loop: true"> </a-entity>
+              </a-entity>
+            </a-scene>
+        `;
+        document.body.insertAdjacentHTML('beforeend', sceneHTML);
+
+    } catch (err) {
+        alert("AR Produk belum tersedia");
+        window.location.href = "catalog.html";
+    }
+  }
+
+  window.onload = initAR;
+</script>
+
 <body class="bg-black overflow-hidden">
-  <!-- CAMERA -->
-  <a-scene mindar-image="imageTargetSrc: ./ar/kch-01/targets.mind; uiScanning: yes;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
-    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
-
-    <a-entity id="target" mindar-image-target="targetIndex: 0">
-      <a-entity gltf-model="./ar/kch-01/model.glb" rotation="90 0 0" position="0 0 0" scale="10 10 10"> </a-entity>
-    </a-entity>
-  </a-scene>
-
   <!-- OVERLAY -->
   <div class="absolute top-5 left-5 z-10">
       <button onclick="goBack()" class="bg-white px-4 py-2 border-[3px] border-black shadow-[5px_5px_0px_black] mono font-bold">← Back</button>
@@ -29,11 +52,6 @@
 
   <!-- ID DISPLAY -->
   <div class="absolute top-5 right-5 z-10 bg-[#edfe8b] px-4 py-2 border-[3px] border-black shadow-[5px_5px_0px_black] mono font-bold">ID: <span id="displayId"></span></div>
-
-  <!-- TARGET FRAME
-  <div class="absolute inset-0 flex items-center justify-center">
-      <div class="w-[250px] h-[350px] border-[3px] border-white rounded-xl"></div>
-  </div> -->
 
   <!-- TOGGLE HOW -->
   <div class="absolute bottom-5 left-1/2 -translate-x-1/2 z-10 text-center">
@@ -49,35 +67,20 @@
   </div>
 
   <script>
-      const video = document.getElementById("camera");
+    function getId() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get("id");
+    }
 
-      // async function startCamera() {
-      //   try {
-      //       const stream = await navigator.mediaDevices.getUserMedia({
-      //         video: { facingMode: "environment" },
-      //       });
-      //       video.srcObject = stream;
-      //   } catch (err) {
-      //       alert("Tidak bisa akses kamera");
-      //   }
-      // }
+    function goBack() {
+      window.history.back();
+    }
 
-      function getId() {
-        const params = new URLSearchParams(window.location.search);
-        return params.get("id");
-      }
+    function toggleHow() {
+      document.getElementById("howBox").classList.toggle("hidden");
+    }
 
-      function goBack() {
-        window.history.back();
-      }
-
-      function toggleHow() {
-        document.getElementById("howBox").classList.toggle("hidden");
-      }
-
-      document.getElementById("displayId").innerText = getId() || "-";
-
-      startCamera();
+    document.getElementById("displayId").innerText = getId() || "-";
   </script>
 </body>
 
