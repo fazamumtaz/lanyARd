@@ -11,7 +11,8 @@
   <link rel="stylesheet" href="global.css" />
 
   <style>
-    body, html {
+    body,
+    html {
       margin: 0;
       padding: 0;
       width: 100%;
@@ -45,8 +46,9 @@
       z-index: 100;
       pointer-events: none;
     }
+
     #arUI button,
-    #arUI > div {
+    #arUI>div {
       pointer-events: all;
     }
 
@@ -60,16 +62,26 @@
       z-index: 9999;
       transition: opacity 0.08s ease;
     }
+
     #flash.active {
       opacity: 0.85;
     }
 
     /* ── Shutter button pulse ── */
     @keyframes shutterPulse {
-      0%   { transform: scale(1); }
-      40%  { transform: scale(0.88); }
-      100% { transform: scale(1); }
+      0% {
+        transform: scale(1);
+      }
+
+      40% {
+        transform: scale(0.88);
+      }
+
+      100% {
+        transform: scale(1);
+      }
     }
+
     .shutter-press {
       animation: shutterPulse 0.25s ease forwards;
     }
@@ -79,7 +91,7 @@
       position: fixed;
       inset: 0;
       z-index: 1000;
-      background: rgba(0,0,0,0.92);
+      background: rgba(0, 0, 0, 0.92);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -90,6 +102,7 @@
       pointer-events: none;
       transition: opacity 0.2s ease;
     }
+
     #previewOverlay.show {
       opacity: 1;
       pointer-events: all;
@@ -115,10 +128,30 @@
       border-style: solid;
       opacity: 0.7;
     }
-    .corner-tl { top: 16px; left: 16px; border-width: 3px 0 0 3px; }
-    .corner-tr { top: 16px; right: 16px; border-width: 3px 3px 0 0; }
-    .corner-bl { bottom: 16px; left: 16px; border-width: 0 0 3px 3px; }
-    .corner-br { bottom: 16px; right: 16px; border-width: 0 3px 3px 0; }
+
+    .corner-tl {
+      top: 16px;
+      left: 16px;
+      border-width: 3px 0 0 3px;
+    }
+
+    .corner-tr {
+      top: 16px;
+      right: 16px;
+      border-width: 3px 3px 0 0;
+    }
+
+    .corner-bl {
+      bottom: 16px;
+      left: 16px;
+      border-width: 0 0 3px 3px;
+    }
+
+    .corner-br {
+      bottom: 16px;
+      right: 16px;
+      border-width: 0 3px 3px 0;
+    }
 
     /* Shutter button */
     #shutterBtn {
@@ -135,10 +168,12 @@
       justify-content: center;
       transition: box-shadow 0.1s;
     }
+
     #shutterBtn:active {
       box-shadow: 2px 2px 0px black;
       transform: translate(2px, 2px);
     }
+
     #shutterBtn::after {
       content: '';
       width: 48px;
@@ -161,9 +196,11 @@
       cursor: pointer;
       transition: transform 0.1s, box-shadow 0.1s;
     }
+
     .action-btn:hover {
       transform: translate(-2px, -2px);
     }
+
     .action-btn:active {
       transform: translate(2px, 2px);
     }
@@ -172,22 +209,40 @@
       background: #edfe8b;
       box-shadow: 5px 5px 0px black;
     }
-    .btn-download:hover { box-shadow: 7px 7px 0px black; }
-    .btn-download:active { box-shadow: 2px 2px 0px black; }
+
+    .btn-download:hover {
+      box-shadow: 7px 7px 0px black;
+    }
+
+    .btn-download:active {
+      box-shadow: 2px 2px 0px black;
+    }
 
     .btn-share {
       background: #00D6BD;
       box-shadow: 5px 5px 0px black;
     }
-    .btn-share:hover { box-shadow: 7px 7px 0px black; }
-    .btn-share:active { box-shadow: 2px 2px 0px black; }
+
+    .btn-share:hover {
+      box-shadow: 7px 7px 0px black;
+    }
+
+    .btn-share:active {
+      box-shadow: 2px 2px 0px black;
+    }
 
     .btn-retake {
       background: white;
       box-shadow: 5px 5px 0px black;
     }
-    .btn-retake:hover { box-shadow: 7px 7px 0px black; }
-    .btn-retake:active { box-shadow: 2px 2px 0px black; }
+
+    .btn-retake:hover {
+      box-shadow: 7px 7px 0px black;
+    }
+
+    .btn-retake:active {
+      box-shadow: 2px 2px 0px black;
+    }
 
     /* Toast */
     #toast {
@@ -207,6 +262,7 @@
       transition: opacity 0.2s, transform 0.2s;
       white-space: nowrap;
     }
+
     #toast.show {
       opacity: 1;
       transform: translateX(-50%) translateY(0);
@@ -233,7 +289,8 @@
     </div>
 
     <!-- ID badge -->
-    <div class="absolute top-5 right-5 z-10 bg-[#edfe8b] px-4 py-2 border-[3px] border-black shadow-[5px_5px_0px_black] mono font-bold text-sm">
+    <div
+      class="absolute top-5 right-5 z-10 bg-[#edfe8b] px-4 py-2 border-[3px] border-black shadow-[5px_5px_0px_black] mono font-bold text-sm">
       ID: <span id="displayId"></span>
     </div>
 
@@ -250,7 +307,8 @@
         class="bg-white px-5 py-2 border-[3px] border-black shadow-[5px_5px_0px_black] mono font-bold text-sm">
         Cara pakai
       </button>
-      <div id="howBox" class="hidden bg-white p-4 border-[3px] border-black shadow-[6px_6px_0px_black] text-sm mono max-w-xs">
+      <div id="howBox"
+        class="hidden bg-white p-4 border-[3px] border-black shadow-[6px_6px_0px_black] text-sm mono max-w-xs">
         <ol class="list-decimal ml-4 text-left space-y-1">
           <li>Arahkan kamera ke target</li>
           <li>Pastikan cahaya cukup</li>
@@ -278,26 +336,29 @@
     <div class="flex flex-row gap-3 flex-wrap justify-center">
       <button class="action-btn btn-retake" onclick="retake()">
         <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
-          <path d="M3 10C3 6.13 6.13 3 10 3C12.1 3 14 3.9 15.4 5.3L17 7H13" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M17 10C17 13.87 13.87 17 10 17C7.9 17 6 16.1 4.6 14.7L3 13H7" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M3 10C3 6.13 6.13 3 10 3C12.1 3 14 3.9 15.4 5.3L17 7H13" stroke="black" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M17 10C17 13.87 13.87 17 10 17C7.9 17 6 16.1 4.6 14.7L3 13H7" stroke="black" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" />
         </svg>
         Ambil Lagi
       </button>
 
       <button class="action-btn btn-download" onclick="downloadCapture()">
         <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
-          <path d="M10 3V13M10 13L6 9M10 13L14 9" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M3 16H17" stroke="black" stroke-width="2" stroke-linecap="round"/>
+          <path d="M10 3V13M10 13L6 9M10 13L14 9" stroke="black" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <path d="M3 16H17" stroke="black" stroke-width="2" stroke-linecap="round" />
         </svg>
         Download
       </button>
 
       <button class="action-btn btn-share" onclick="shareCapture()">
         <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
-          <circle cx="15" cy="4" r="2" stroke="black" stroke-width="1.8"/>
-          <circle cx="15" cy="16" r="2" stroke="black" stroke-width="1.8"/>
-          <circle cx="5" cy="10" r="2" stroke="black" stroke-width="1.8"/>
-          <path d="M7 9L13 5M7 11L13 15" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+          <circle cx="15" cy="4" r="2" stroke="black" stroke-width="1.8" />
+          <circle cx="15" cy="16" r="2" stroke="black" stroke-width="1.8" />
+          <circle cx="5" cy="10" r="2" stroke="black" stroke-width="1.8" />
+          <path d="M7 9L13 5M7 11L13 15" stroke="black" stroke-width="1.8" stroke-linecap="round" />
         </svg>
         Share
       </button>
@@ -318,7 +379,7 @@
     // ── AR Init ──
     async function initAR() {
       const targetPath = `./ar/${productId}/targets.mind`;
-      const modelPath  = `./ar/${productId}/model.glb`;
+      const modelPath = `./ar/${productId}/model.glb`;
 
       try {
         const res = await fetch(targetPath, { method: 'HEAD' });
@@ -371,17 +432,39 @@
       // Grab A-Frame WebGL canvas (AR overlay)
       const aframeCanvas = document.querySelector('canvas.a-canvas') || document.querySelector('canvas');
 
-      // Use native video resolution for max quality, fallback to screen
-      const w = (video && video.videoWidth)  ? video.videoWidth  : window.innerWidth  * window.devicePixelRatio;
-      const h = (video && video.videoHeight) ? video.videoHeight : window.innerHeight * window.devicePixelRatio;
+      const vw = video ? video.videoWidth : 1280;
+      const vh = video ? video.videoHeight : 720;
 
-      // Composite canvas
+      // ── Reproduce object-fit: cover crop ──
+      // Screen aspect ratio (what user actually sees)
+      const screenW = window.innerWidth;
+      const screenH = window.innerHeight;
+      const screenRatio = screenW / screenH;
+      const videoRatio = vw / vh;
+
+      // How much of the video is visible (same math as CSS object-fit: cover)
+      let srcX, srcY, srcW, srcH;
+      if (videoRatio > screenRatio) {
+        // Video wider than screen → crop left/right
+        srcH = vh;
+        srcW = vh * screenRatio;
+        srcX = (vw - srcW) / 2;
+        srcY = 0;
+      } else {
+        // Video taller than screen → crop top/bottom
+        srcW = vw;
+        srcH = vw / screenRatio;
+        srcX = 0;
+        srcY = (vh - srcH) / 2;
+      }
+
+      // Output canvas: same crop dimensions (full native resolution, correct ratio)
       const composite = document.createElement('canvas');
-      composite.width  = Math.max(w, 1280);
-      composite.height = Math.max(h, 720);
+      composite.width = Math.round(srcW);
+      composite.height = Math.round(srcH);
       const ctx = composite.getContext('2d');
 
-      // 1. Draw video frame
+      // 1. Draw cropped video frame
       if (video && video.readyState >= 2) {
         ctx.save();
         try {
@@ -391,12 +474,12 @@
             ctx.translate(composite.width, 0);
             ctx.scale(-1, 1);
           }
-        } catch (_) {}
-        ctx.drawImage(video, 0, 0, composite.width, composite.height);
+        } catch (_) { }
+        ctx.drawImage(video, srcX, srcY, srcW, srcH, 0, 0, composite.width, composite.height);
         ctx.restore();
       }
 
-      // 2. Overlay A-Frame WebGL canvas on top
+      // 2. Overlay A-Frame WebGL canvas (already rendered at screen ratio)
       if (aframeCanvas) {
         try {
           ctx.drawImage(aframeCanvas, 0, 0, composite.width, composite.height);
@@ -414,7 +497,7 @@
     // ── Preview ──
     function showPreview(dataURL, srcW, srcH) {
       const previewCanvas = document.getElementById('previewCanvas');
-      previewCanvas.width  = srcW;
+      previewCanvas.width = srcW;
       previewCanvas.height = srcH;
       const ctx = previewCanvas.getContext('2d');
       const img = new Image();
@@ -445,7 +528,7 @@
       if (!capturedDataURL) return;
 
       // Convert dataURL to Blob
-      const res  = await fetch(capturedDataURL);
+      const res = await fetch(capturedDataURL);
       const blob = await res.blob();
       const file = new File([blob], `POP_${productId}.png`, { type: 'image/png' });
 
@@ -466,7 +549,7 @@
             title: 'POP AR Experience',
             text: 'Lihat pengalaman AR-ku dari POP! 🎉\nhttps://hi.pop.ar',
           });
-        } catch (_) {}
+        } catch (_) { }
       } else {
         // Desktop fallback: copy to clipboard
         try {
@@ -491,4 +574,5 @@
     function toggleHow() { document.getElementById('howBox').classList.toggle('hidden'); }
   </script>
 </body>
+
 </html>
